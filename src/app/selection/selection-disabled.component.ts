@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ColumnMode, SelectionType } from 'projects/swimlane/ngx-datatable/src/public-api';
+import { ColumnMode, SelectionType } from 'projects/preeco-privacy/ngx-datatable/src/public-api';
 
 @Component({
   selector: 'multidisable-selection-demo',

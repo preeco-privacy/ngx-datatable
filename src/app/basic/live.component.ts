@@ -1,5 +1,5 @@
 import { Component, ViewChild, ChangeDetectorRef } from '@angular/core';
-import { ColumnMode } from 'projects/swimlane/ngx-datatable/src/public-api';
+import { ColumnMode } from 'projects/preeco-privacy/ngx-datatable/src/public-api';
 
 @Component({
   selector: 'live-data-demo',
