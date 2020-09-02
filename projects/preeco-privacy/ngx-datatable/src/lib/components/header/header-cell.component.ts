@@ -8,7 +8,6 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef
 } from '@angular/core';
-import { MouseEvent } from '../../events';
 import { SortType } from '../../types/sort.type';
 import { SelectionType } from '../../types/selection.type';
 import { TableColumn } from '../../types/table-column.type';
@@ -66,6 +65,16 @@ export class DataTableHeaderCellComponent {
 
   get sortDescendingIcon() {
     return this._sortDescendingIcon;
+  }
+
+  @Input()
+  set sortUnsetIcon(val: string) {
+    this._sortUnsetIcon = val;
+    this.sortClass = this.calcSortClass(this.sortDir);
+  };
+
+  get sortUnsetIcon() {
+    return this._sortUnsetIcon;
   }
 
   @Input() isTarget: boolean;
@@ -189,12 +198,17 @@ export class DataTableHeaderCellComponent {
   private _sorts: any[];
   private _sortAscendingIcon;
   private _sortDescendingIcon;
+  private _sortUnsetIcon;
 
   constructor(private cd: ChangeDetectorRef) {}
 
   @HostListener('contextmenu', ['$event'])
   onContextmenu($event: MouseEvent): void {
     this.columnContextmenu.emit({ event: $event, column: this.column });
+  }
+
+  ngOnInit() {
+    this.sortClass = this.calcSortClass(this.sortDir);
   }
 
   calcSortDir(sorts: any[]): any {
@@ -219,12 +233,13 @@ export class DataTableHeaderCellComponent {
   }
 
   calcSortClass(sortDir: SortDirection): string {
+    if (!this.cellContext.column.sortable) return;
     if (sortDir === SortDirection.asc) {
       return `sort-btn sort-asc ${this.sortAscendingIcon}`;
     } else if (sortDir === SortDirection.desc) {
       return `sort-btn sort-desc ${this.sortDescendingIcon}`;
     } else {
-      return `sort-btn`;
+      return `sort-btn ${this.sortUnsetIcon}`;
     }
   }
 }

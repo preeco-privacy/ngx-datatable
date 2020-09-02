@@ -114,7 +114,7 @@ import { ColumnMode } from 'projects/preeco-privacy/ngx-datatable/src/public-api
   encapsulation: ViewEncapsulation.None
 })
 export class ResponsiveComponent {
-  @ViewChild('myTable', { static: false }) table: any;
+  @ViewChild('myTable') table: any;
 
   rows: any[] = [];
   expanded: any = {};

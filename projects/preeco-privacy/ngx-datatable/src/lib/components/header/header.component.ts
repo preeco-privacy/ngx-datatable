@@ -5,9 +5,9 @@ import {
   Input,
   HostBinding,
   ChangeDetectorRef,
-  ChangeDetectionStrategy, OnDestroy
+  ChangeDetectionStrategy,
+  OnDestroy
 } from '@angular/core';
-import { MouseEvent } from '../../events';
 import { columnsByPin, columnGroupWidths, columnsByPinArr } from '../../utils/column';
 import { SortType } from '../../types/sort.type';
 import { SelectionType } from '../../types/selection.type';
@@ -54,6 +54,7 @@ import { translateXY } from '../../utils/translate';
           [selectionType]="selectionType"
           [sortAscendingIcon]="sortAscendingIcon"
           [sortDescendingIcon]="sortDescendingIcon"
+          [sortUnsetIcon]="sortUnsetIcon"
           [allRowsSelected]="allRowsSelected"
           (sort)="onSort($event)"
           (select)="select.emit($event)"
@@ -71,6 +72,7 @@ import { translateXY } from '../../utils/translate';
 export class DataTableHeaderComponent implements OnDestroy {
   @Input() sortAscendingIcon: any;
   @Input() sortDescendingIcon: any;
+  @Input() sortUnsetIcon: any;
   @Input() scrollbarH: boolean;
   @Input() dealsWithGroup: boolean;
   @Input() targetMarkerTemplate: any;
